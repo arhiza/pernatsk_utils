@@ -21,7 +21,7 @@ function get_pyramid_info(){
   //поиск вкладов, которые можно закрыть
   var element = document.getElementsByClassName("butt-close")[0];
   if(element==undefined) {
-    localStorage["qpernatsk.PyramidReady"]=undefined;
+    localStorage.removeItem("qpernatsk.PyramidReady");
   } else {
     localStorage["qpernatsk.PyramidReady"]="OK";
   }
@@ -50,7 +50,7 @@ function get_pyramid_info(){
   }
   //обновление инфы о замороженном вкладе в хранилище
   if (min_date==undefined) {
-    localStorage["qpernatsk.PyramidNext"]=undefined;
+    localStorage.removeItem("qpernatsk.PyramidNext");
   } else {
     localStorage["qpernatsk.PyramidNext"]=min_date;
   }
