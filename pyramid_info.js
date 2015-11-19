@@ -15,7 +15,7 @@ function get_pyramid_info(){
 
   var element = document.getElementsByClassName("i41-pyramid")[0];
   if (element==undefined) {
-    $('.cabinet-title').after('<div class="cabinet-item"><b>qPernatsk:</b> для уведомлений о датах разморозки вкладов включите вкладку пирамиды</div>');
+    $('.balance').after('<div class="cabinet-item"><b>qPernatsk:</b> для уведомлений о датах разморозки вкладов включите вкладку пирамиды</div>');
   }
   
   //поиск вкладов, которые можно закрыть
@@ -27,22 +27,24 @@ function get_pyramid_info(){
   }
 
   //поиск замороженных вкладов
-  var tmp = document.getElementsByClassName("frozen");
+  var tmp = document.getElementsByClassName("cabinet-froze");
   var min_date=undefined;
   for (i = 0; i < tmp.length; i++)
   {
     //конвертация строки с инфой про разморозку вклада в формат времени, для удобства сравнения
-    var t = $(tmp[i]).parent().html();
-    t = t.slice(t.indexOf('Дата разморозки'));
-    t = t.substr(t.indexOf('>')+1,16);
-    t = t.slice(9,11)+'/'+t.slice(6,8)+'/'+t.slice(12,16)+' '+t.slice(0,5);
-    var d = new Date(t);
-    //поиск ближайшего времени
-    if (min_date==undefined) {
-      min_date=d;
-    } else {
-      if (d<min_date) {
+    var t = $(tmp[i]).html();
+    if (t.indexOf('заморожен')>0) {
+      t = t.slice(t.indexOf('Дата разморозки'));
+      t = t.substr(t.indexOf('>')+1,16);
+      t = t.slice(9,11)+'/'+t.slice(6,8)+'/'+t.slice(12,16)+' '+t.slice(0,5);
+      var d = new Date(t);
+      //поиск ближайшего времени
+      if (min_date==undefined) {
         min_date=d;
+      } else {
+        if (d<min_date) {
+          min_date=d;
+        }
       }
     }
   }
