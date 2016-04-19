@@ -46,8 +46,8 @@ function check_health(){
   if (tmp.indexOf('%')>0) {
     t = tmp.slice(0,tmp.indexOf('%'));
     if (parseInt(t)<10) {
-      loka = $("div[onMouseOver*='Иммунитет']").next().next().next().html();
-      if (loka.split("\"")[3] == "/location/forest") {
+      //loka = $("div[onMouseOver*='Иммунитет']").next().next().next().html();
+      if ($(".active-work").html().split("\"")[1] == "/location/forest") {
         view_ask_window("Здоровья мало! Съесть подорожник?","https://pernatsk.ru/location/forest/heal");
       } else {
         view_ask_window("Здоровья мало! В гнездо за пузырьком?","https://pernatsk.ru/nest/bird");
